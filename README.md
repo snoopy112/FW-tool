@@ -39,6 +39,7 @@ head of program.
   - sudo apt-get install optipng
   - sudo apt-get install gcc-mipsel-linux-gnu
   - sudo apt install mtd-utils
+  - pip3 install PyQt5
   - pip3 install pycdlib
   - pip3 install python-lzo
   - pip3 install ubi_reader
