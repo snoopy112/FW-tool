@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=bash -c 'python3 "$(dirname "$1")/FW_tool.py"' dummy %k
+Name=FW tool
+Terminal=false
+Type=Application
