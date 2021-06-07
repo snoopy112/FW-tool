@@ -33,7 +33,7 @@ head of program.
 
 ## DEPENDENCIES:
 - Linux-based system
-- Python >= 3.5
+- Python >= 3.6
 - Install modules with bash:
   - sudo apt-get install liblzo2-dev
   - sudo apt-get install optipng
