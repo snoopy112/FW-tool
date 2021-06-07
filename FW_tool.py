@@ -197,7 +197,7 @@ class BrowserHandler(QtCore.QObject):
         self.newTextAndColor.emit('of program.\n', QColor(*GRAY))
         self.newTextAndColor.emit('DEPENDENCIES:', QColor(*GRAY))
         self.newTextAndColor.emit('Linux-based system', QColor(*GRAY))
-        self.newTextAndColor.emit('Python >= 3.5', QColor(*GRAY))
+        self.newTextAndColor.emit('Python >= 3.6', QColor(*GRAY))
         self.newTextAndColor.emit('Install modules with bash:', QColor(*GRAY))
         self.newTextAndColor.emit('# sudo apt-get install liblzo2-dev', QColor(*GRAY))
         self.newTextAndColor.emit('# sudo apt-get install optipng', QColor(*GRAY))
