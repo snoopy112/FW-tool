@@ -24,7 +24,8 @@ PLAYERS = {
     "Fiio M5": "m5",
     "HiBy R3": "r3",
     "HiBy R3 Pro": "r3pro",
-    "Hidizs AP60 / AP80": "ap",
+    "Hidizs AP60 / AP60 II / AP60 Pro": "ap60",
+    "Hidizs AP80 / AP80 Pro / AP80 Pro X": "ap80",
     "Shanling M0": "m0",
     "Shanling M1": "m1",
     "Shanling M2s": "m2s",
@@ -178,7 +179,8 @@ class BrowserHandler(QtCore.QObject):
         self.newTextAndColor.emit('- Fiio M5 (not tested)', QColor(*GRAY))
         self.newTextAndColor.emit('- HiBy R3', QColor(*GRAY))
         self.newTextAndColor.emit('- HiBy R3 Pro', QColor(*GRAY))
-        self.newTextAndColor.emit('- Hidizs AP60 / AP80', QColor(*GRAY))
+        self.newTextAndColor.emit('- Hidizs AP60 / AP60 II / AP60 Pro', QColor(*GRAY))
+        self.newTextAndColor.emit('- Hidizs AP80 / AP80 Pro / AP80 Pro X', QColor(*GRAY))
         self.newTextAndColor.emit('- Shanling M0 (not tested)', QColor(*GRAY))
         self.newTextAndColor.emit('- Shanling M1', QColor(*GRAY))
         self.newTextAndColor.emit('- Shanling M2s', QColor(*GRAY))
@@ -245,7 +247,7 @@ class BrowserHandler(QtCore.QObject):
             self.newTextAndColor.emit('[ERROR]: Selected path doesn\'t exist...', QColor(*RED))
             return
 
-        if player_name in ('agptek', 'ap', 'm1', 'm2s', 'm3s', 'n3', 'r3', 'r3pro', 'x3ii', 'x20'):
+        if player_name in ('agptek', 'ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'r3', 'r3pro', 'x3ii', 'x20'):
             if player_name in ('r3', 'r3pro'):
                 upt_file = '{}.upt'.format(player_name)
             else:
@@ -277,7 +279,7 @@ class BrowserHandler(QtCore.QObject):
             iso.close()
 
             self.newTextAndColor.emit('[INFO]: Info about SYSTEM.UBI file:', QColor(*BLUE))
-            block_size = 0
+            block_size = 1
             ufile_obj = ubi_file(join(path_to_fw, player_name, 'SYSTEM.UBI'), block_size)
             ubifs_obj = ubifs(ufile_obj)
 
@@ -334,11 +336,11 @@ class BrowserHandler(QtCore.QObject):
                     tar.extractall(path=join(path_to_fw, player_name))
 
             else:
-                if player_name in ('m3k'):
+                if player_name == 'm3k':
                     upt_file = 'M3K.fw'
-                elif player_name in ('m3pro'):
+                elif player_name == 'm3pro':
                     upt_file = 'M3Pro.zip'
-                elif player_name in ('m5'):
+                elif player_name == 'm5':
                     upt_file = 'M5.zip'
                 else:
                     pass
@@ -394,7 +396,7 @@ class BrowserHandler(QtCore.QObject):
                 fp.write(out_data)
 
             self.newTextAndColor.emit('[INFO]: Info about {}system.ubi file:'.format(system_file_prefix), QColor(*BLUE))
-            block_size = 0
+            block_size = 1
             ufile_obj = ubi_file(join(path_to_fw, player_name, '{}system.ubi'.format(system_file_prefix)), block_size)
             ubifs_obj = ubifs(ufile_obj)
 
@@ -450,16 +452,16 @@ class BrowserHandler(QtCore.QObject):
         '''
         self.newTextAndColor.emit(self.repack.__doc__, QColor(*GRAY))
 
-        if player_name in ('agptek', 'ap', 'm1', 'm2s', 'm3s', 'n3', 'r3', 'r3pro', 'x3ii', 'x20'):
+        if player_name in ('agptek', 'ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'r3', 'r3pro', 'x3ii', 'x20'):
+            upt_file = 'update.upt'
+            LEB = 126976
+            PEB = 2048
             if player_name in ('r3', 'r3pro'):
                 upt_file = '{}.upt'.format(player_name)
-                LEB = 126976
-                PEB = 2048
+                MAX_LEB_CNT = 480
+            elif player_name == 'ap80':
                 MAX_LEB_CNT = 480
             else:
-                upt_file = 'update.upt'
-                LEB = 126976
-                PEB = 2048
                 MAX_LEB_CNT = 1024
 
             try:
@@ -536,24 +538,20 @@ class BrowserHandler(QtCore.QObject):
 
 
         elif player_name in ('m0', 'm2x', 'm5s', 'm3k', 'm3pro', 'm5'):
+            LEB = 126976
+            PEB = 2048
             if player_name in ('m0', 'm2x', 'm5s'):
-                LEB = 126976
-                PEB = 2048
                 MAX_LEB_CNT = 720
-            elif player_name in ('m3k', 'm3pro', 'm5'):
-                LEB = 126976
-                PEB = 2048
-                MAX_LEB_CNT = 2048
             else:
-                pass
+                MAX_LEB_CNT = 2048
 
             if player_name in ('m0', 'm2x', 'm5s'):
                 upt_file = 'update.bin'
-            elif player_name in ('m3k'):
+            elif player_name == 'm3k':
                 upt_file = 'M3K.fw'
-            elif player_name in ('m3pro'):
+            elif player_name == 'm3pro':
                 upt_file = 'M3Pro.zip'
-            elif player_name in ('m5'):
+            elif player_name == 'm5':
                 upt_file = 'M5.zip'
             else:
                 pass
@@ -702,7 +700,7 @@ class BrowserHandler(QtCore.QObject):
 
 
     def run(self):
-        self.newTextAndColor.emit('---Start---', QColor(*CYAN))
+        self.newTextAndColor.emit('{0}START{0}'.format('-'*10), QColor(*CYAN))
 
         mode = window.ui.modeComboBox.currentText()
         # mode_ind = window.ui.modeComboBox.currentIndex()
@@ -719,7 +717,7 @@ class BrowserHandler(QtCore.QObject):
         func = getattr(self, mode)
         func(player_name=player, path_to_fw=path)
 
-        self.newTextAndColor.emit('----End----', QColor(*CYAN))
+        self.newTextAndColor.emit('{0}END{0}'.format('-'*10), QColor(*CYAN))
 
 
 class MyWindow(QtWidgets.QWidget):

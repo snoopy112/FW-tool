@@ -11,7 +11,8 @@ players based on Hiby OS, MTouch and Fiio system (non-Android)
 - Fiio M5 `(not tested)`
 - HiBy R3
 - HiBy R3 Pro
-- Hidizs AP60 / AP80
+- Hidizs AP60 / AP60 II / AP60 Pro
+- Hidizs AP80 / AP80 Pro / AP80 Pro X
 - Shanling M0 `(not tested)`
 - Shanling M1
 - Shanling M2s
