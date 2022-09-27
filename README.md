@@ -6,6 +6,7 @@ players based on Hiby OS, MTouch and Fiio system (non-Android)
 ## Supported players:
 - AGPTEK Rocker / Benjie T6
 - Cayin N3 / N3 Pro
+- Cayin N8
 - Fiio M3 Pro `(not tested)`
 - Fiio M3K `(not tested)`
 - Fiio M5 `(not tested)`
@@ -18,6 +19,7 @@ players based on Hiby OS, MTouch and Fiio system (non-Android)
 - Shanling M2x `(not tested)`
 - Shanling M3s
 - Shanling M5s `(not tested)`
+- Tempotec V1 / V1-A
 - xDuoo X3 II
 - xDuoo X20
 

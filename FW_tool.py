@@ -17,9 +17,10 @@ except Exception as e:
 PATH_TO_FW = ''  # path by default
 
 PLAYERS = {
-    "AGPTEK Rocker / Benjie T6": "agptek",
+    "AGPTEK Rocker / Benjie T6": "rocker",
     "Cayin N3": "n3",
     "Cayin N3 Pro": "n3pro",
+    "Cayin N8": "n8",
     "Fiio M3 Pro": "m3pro",
     "Fiio M3K": "m3k",
     "Fiio M5": "m5",
@@ -33,6 +34,7 @@ PLAYERS = {
     "Shanling M2x": "m2x",
     "Shanling M3s": "m3s",
     "Shanling M5s": "m5s",
+    "Tempotec V1 / V1-A": "v1",
     "xDuoo X3 II": "x3ii",
     "xDuoo X20": "x20"
 }
@@ -175,6 +177,7 @@ class BrowserHandler(QtCore.QObject):
         self.newTextAndColor.emit('Supported players:', QColor(*GRAY))
         self.newTextAndColor.emit('- AGPTEK Rocker / Benjie T6', QColor(*GRAY))
         self.newTextAndColor.emit('- Cayin N3 / N3 Pro', QColor(*GRAY))
+        self.newTextAndColor.emit('- Cayin N8', QColor(*GRAY))
         self.newTextAndColor.emit('- Fiio M3 Pro (not tested)', QColor(*GRAY))
         self.newTextAndColor.emit('- Fiio M3K (not tested)', QColor(*GRAY))
         self.newTextAndColor.emit('- Fiio M5 (not tested)', QColor(*GRAY))
@@ -187,6 +190,7 @@ class BrowserHandler(QtCore.QObject):
         self.newTextAndColor.emit('- Shanling M2x (not tested)', QColor(*GRAY))
         self.newTextAndColor.emit('- Shanling M3s', QColor(*GRAY))
         self.newTextAndColor.emit('- Shanling M5s (not tested)', QColor(*GRAY))
+        self.newTextAndColor.emit('- Tempotec V1 / V1-A', QColor(*GRAY))
         self.newTextAndColor.emit('- xDuoo X3 II', QColor(*GRAY))
         self.newTextAndColor.emit('- xDuoo X20\n', QColor(*GRAY))
         self.newTextAndColor.emit('WARNING:', QColor(*GRAY))
@@ -247,8 +251,8 @@ class BrowserHandler(QtCore.QObject):
             self.newTextAndColor.emit('[ERROR]: Selected path doesn\'t exist...', QColor(*RED))
             return
 
-        if player_name in ('agptek', 'ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'n3pro', 'r3', 'r3pro', 'x3ii', 'x20'):
-            if player_name in ('r3', 'r3pro'):
+        if player_name in ('ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'n8', 'n3pro', 'r3', 'r3pro', 'rocker', 'v1', 'x3ii', 'x20'):
+            if player_name in ('n8', 'r3', 'r3pro'):
                 upt_file = '{}.upt'.format(player_name)
             else:
                 upt_file = 'update.upt'
@@ -452,11 +456,11 @@ class BrowserHandler(QtCore.QObject):
         '''
         self.newTextAndColor.emit(self.repack.__doc__, QColor(*GRAY))
 
-        if player_name in ('agptek', 'ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'n3pro', 'r3', 'r3pro', 'x3ii', 'x20'):
+        if player_name in ('ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'n3pro', 'n8', 'r3', 'r3pro', 'rocker', 'v1', 'x3ii', 'x20'):
             upt_file = 'update.upt'
             LEB = 126976
             PEB = 2048
-            if player_name in ('r3', 'r3pro'):
+            if player_name in ('n8', 'r3', 'r3pro'):
                 upt_file = '{}.upt'.format(player_name)
                 MAX_LEB_CNT = 480
             elif player_name in ('ap80', 'n3pro'):
