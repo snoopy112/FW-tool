@@ -24,6 +24,7 @@ PLAYERS = {
     "Fiio M3 Pro": "m3pro",
     "Fiio M3K": "m3k",
     "Fiio M5": "m5",
+    "HiBy R2": "r2",
     "HiBy R3": "r3",
     "HiBy R3 Pro": "r3pro",
     "Hidizs AP60 / AP60 II / AP60 Pro": "ap60",
@@ -180,7 +181,8 @@ class BrowserHandler(QtCore.QObject):
         self.newTextAndColor.emit('- Cayin N8', QColor(*GRAY))
         self.newTextAndColor.emit('- Fiio M3 Pro (not tested)', QColor(*GRAY))
         self.newTextAndColor.emit('- Fiio M3K (not tested)', QColor(*GRAY))
-        self.newTextAndColor.emit('- Fiio M5 (not tested)', QColor(*GRAY))
+        self.newTextAndColor.emit('- Fiio M5 (not tested)', Colour(*GRAY))
+        self.newTextAndColor.emit('- HiBy R2', QColor(*GRAY))
         self.newTextAndColor.emit('- HiBy R3 / R3 Pro', QColor(*GRAY))
         self.newTextAndColor.emit('- Hidizs AP60 / AP60 II / AP60 Pro', QColor(*GRAY))
         self.newTextAndColor.emit('- Hidizs AP80 / AP80 Pro / AP80 Pro X', QColor(*GRAY))
@@ -251,8 +253,8 @@ class BrowserHandler(QtCore.QObject):
             self.newTextAndColor.emit('[ERROR]: Selected path doesn\'t exist...', QColor(*RED))
             return
 
-        if player_name in ('ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'n8', 'n3pro', 'r3', 'r3pro', 'rocker', 'v1', 'x3ii', 'x20'):
-            if player_name in ('n8', 'r3', 'r3pro'):
+        if player_name in ('ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'n8', 'n3pro', 'r2', 'r3', 'r3pro', 'rocker', 'v1', 'x3ii', 'x20'):
+            if player_name in ('n8', 'r2', 'r3', 'r3pro'):
                 upt_file = '{}.upt'.format(player_name)
             else:
                 upt_file = 'update.upt'
@@ -456,11 +458,11 @@ class BrowserHandler(QtCore.QObject):
         '''
         self.newTextAndColor.emit(self.repack.__doc__, QColor(*GRAY))
 
-        if player_name in ('ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'n3pro', 'n8', 'r3', 'r3pro', 'rocker', 'v1', 'x3ii', 'x20'):
+        if player_name in ('ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'n3pro', 'n8', 'r2', 'r3', 'r3pro', 'rocker', 'v1', 'x3ii', 'x20'):
             upt_file = 'update.upt'
             LEB = 126976
             PEB = 2048
-            if player_name in ('n8', 'r3', 'r3pro'):
+            if player_name in ('n8', 'r2', 'r3', 'r3pro'):
                 upt_file = '{}.upt'.format(player_name)
                 MAX_LEB_CNT = 480
             elif player_name in ('ap80', 'n3pro'):
