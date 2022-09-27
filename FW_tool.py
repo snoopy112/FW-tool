@@ -18,7 +18,8 @@ PATH_TO_FW = ''  # path by default
 
 PLAYERS = {
     "AGPTEK Rocker / Benjie T6": "agptek",
-    "Cayin N3": "ap",
+    "Cayin N3": "n3",
+    "Cayin N3 Pro": "n3pro",
     "Fiio M3 Pro": "m3pro",
     "Fiio M3K": "m3k",
     "Fiio M5": "m5",
@@ -173,12 +174,11 @@ class BrowserHandler(QtCore.QObject):
         self.newTextAndColor.emit('players based on Hiby OS, MTouch and Fiio system (non-Android)\n', QColor(*GRAY))
         self.newTextAndColor.emit('Supported players:', QColor(*GRAY))
         self.newTextAndColor.emit('- AGPTEK Rocker / Benjie T6', QColor(*GRAY))
-        self.newTextAndColor.emit('- Cayin N3', QColor(*GRAY))
+        self.newTextAndColor.emit('- Cayin N3 / N3 Pro', QColor(*GRAY))
         self.newTextAndColor.emit('- Fiio M3 Pro (not tested)', QColor(*GRAY))
         self.newTextAndColor.emit('- Fiio M3K (not tested)', QColor(*GRAY))
         self.newTextAndColor.emit('- Fiio M5 (not tested)', QColor(*GRAY))
-        self.newTextAndColor.emit('- HiBy R3', QColor(*GRAY))
-        self.newTextAndColor.emit('- HiBy R3 Pro', QColor(*GRAY))
+        self.newTextAndColor.emit('- HiBy R3 / R3 Pro', QColor(*GRAY))
         self.newTextAndColor.emit('- Hidizs AP60 / AP60 II / AP60 Pro', QColor(*GRAY))
         self.newTextAndColor.emit('- Hidizs AP80 / AP80 Pro / AP80 Pro X', QColor(*GRAY))
         self.newTextAndColor.emit('- Shanling M0 (not tested)', QColor(*GRAY))
@@ -247,7 +247,7 @@ class BrowserHandler(QtCore.QObject):
             self.newTextAndColor.emit('[ERROR]: Selected path doesn\'t exist...', QColor(*RED))
             return
 
-        if player_name in ('agptek', 'ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'r3', 'r3pro', 'x3ii', 'x20'):
+        if player_name in ('agptek', 'ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'n3pro', 'r3', 'r3pro', 'x3ii', 'x20'):
             if player_name in ('r3', 'r3pro'):
                 upt_file = '{}.upt'.format(player_name)
             else:
@@ -452,14 +452,14 @@ class BrowserHandler(QtCore.QObject):
         '''
         self.newTextAndColor.emit(self.repack.__doc__, QColor(*GRAY))
 
-        if player_name in ('agptek', 'ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'r3', 'r3pro', 'x3ii', 'x20'):
+        if player_name in ('agptek', 'ap60', 'ap80', 'm1', 'm2s', 'm3s', 'n3', 'n3pro', 'r3', 'r3pro', 'x3ii', 'x20'):
             upt_file = 'update.upt'
             LEB = 126976
             PEB = 2048
             if player_name in ('r3', 'r3pro'):
                 upt_file = '{}.upt'.format(player_name)
                 MAX_LEB_CNT = 480
-            elif player_name == 'ap80':
+            elif player_name in ('ap80', 'n3pro'):
                 MAX_LEB_CNT = 480
             else:
                 MAX_LEB_CNT = 1024
